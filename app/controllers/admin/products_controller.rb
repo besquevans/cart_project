@@ -1,7 +1,7 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin
-  before_action :set_product, only: [:edit, :update]
+  before_action :set_product, only: [:edit, :update, :destroy]
   
   def index
     @products = Product.all
@@ -28,11 +28,17 @@ class Admin::ProductsController < ApplicationController
   def update
     if @product.update(product_params)
       flash[:notice] = "product was successfully updated"
-      redirect_to admin_product_path(@product)
+      redirect_to admin_products_path(@product)
     else
       flash.now[:alert] = "product was failed to update"
       render :edit
     end
+  end
+
+  def destroy
+    @product.destroy
+    redirect_to admin_rproducts_path
+    flash[:alert] = "product was deleted"
   end
 
   private
