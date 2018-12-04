@@ -11,5 +11,7 @@
     <%= link_to 'Delete', admin_product_path(product), method: :delete, data: {confirm:"Are you sure?"} %>
   </li>
   <% end %>
+
+  <%= paginate @products %>
 </ul>
 

@@ -36,9 +36,13 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
+#照片上傳器
 gem 'carrierwave'
 gem 'ffaker'
+#api讀取
 gem 'rest-client'
+#分頁
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
