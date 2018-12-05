@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-4">
+      <%= image_tag @product.image.url, class: "img-responsive center-block" %>
+      <br>
+      
+    </div>
+    <div class="col-md-8">
+      <div class="well">
+        <h1><%= @product.name %></h1>
+        <h3>$ <%= @product.price %></h3>       
+      </div>
+      
+      <%= simple_format @product.description %>
+      
+      <br/>
+      <h3>count</h3>   
+      <h3>add</h3>  
+    </div>
+
+  </div>
+</div>
