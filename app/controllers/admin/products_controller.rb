@@ -12,10 +12,10 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
-    @product = Restaurant.new(product_params)
+    @product = Product.new(product_params)
     if @product.save
       flash[:notice] = "product was successfully created"
-      redirect_to admin_restaurants_path
+      redirect_to admin_products_path
     else
       flash.now[:alert] = "product was failed to create"
       render :new
@@ -37,7 +37,7 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to admin_rproducts_path
+    redirect_to admin_products_path
     flash[:alert] = "product was deleted"
   end
 
@@ -48,6 +48,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def set_product
-    @product = @product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 end
