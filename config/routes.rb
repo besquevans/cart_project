@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: [:index, :show]
+  resources :cartltem, only: 
 end
