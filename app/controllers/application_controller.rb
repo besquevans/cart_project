@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
-  helper_method :current_cart
+  helper_method :current_cart #可以直接在 View 呼叫 current_cart 方法
 
   private
 
@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
       @cart = Cart.find_by(id: session[:cart_id])
     end
 
-    @cart ||= Cart.create
+    @cart ||= Cart.create # @cart nil產生一筆新的 Cart 物件
 
-    session[:cart_id] = @cart.id
-    @cart
+    session[:cart_id] = @cart.id  #確保 server 和 client 交流的資訊裡，有攜帶最新的 @cart.id
+    @cart   #回傳@cart 
   end
 end
