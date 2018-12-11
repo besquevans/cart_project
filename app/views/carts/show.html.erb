@@ -24,10 +24,12 @@
         <td><%= item.product.price %></td>
         <td>
           <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post %>
+          </br> 
           <%= item.quantity %>
+          </br> 
           <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post %>
         </td>
-        <td>Subtotal</td>
+        <td><%= item.product.price * item.quantity.to_i %></td>
         <td>
           <%= link_to 'Delete', remove_from_cart_product_path(item.product), method: :post %>
         </td>
