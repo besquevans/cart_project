@@ -12,22 +12,26 @@
   </thead>
   <tbody>
     <% @items.each do |item| %>
-    <tr>
-      <th scope="row">
-        <% if item.product.image? %>
-          <%= image_tag item.product.image.url, class: "img-responsive center-block" %>
-        <% else %>
-          <span class="glyphicon glyphicon-picture"></span>
-        <% end %>
-      </th>
-      <td><%= item.product.name %></td>
-      <td><%= item.product.price %></td>
-      <td><%= item.quantity %></td>
-      <td>Subtotal</td>
-      <td>
-        <%= link_to 'Delete', remove_from_cart_product_path(item.product), method: :post, data: { confirm: "Are you sure?"} %>
-      </td>
-    </tr>
+      <tr>
+        <th scope="row">
+          <% if item.product.image? %>
+            <%= image_tag item.product.image.url, class: "img-responsive center-block" %>
+          <% else %>
+            <span class="glyphicon glyphicon-picture"></span>
+          <% end %>
+        </th>
+        <td><%= item.product.name %></td>
+        <td><%= item.product.price %></td>
+        <td>
+          <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post %>
+          <%= item.quantity %>
+          <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post %>
+        </td>
+        <td>Subtotal</td>
+        <td>
+          <%= link_to 'Delete', remove_from_cart_product_path(item.product), method: :post %>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>
