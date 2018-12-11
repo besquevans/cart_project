@@ -25,7 +25,7 @@
       <td><%= item.quantity %></td>
       <td>Subtotal</td>
       <td>
-        <%= link_to 'Delete', cart_path(item), method: :delete, data: { confirm: "Are you sure?"} %>
+        <%= link_to 'Delete', remove_from_cart_product_path(item.product), method: :post, data: { confirm: "Are you sure?"} %>
       </td>
     </tr>
     <% end %>
