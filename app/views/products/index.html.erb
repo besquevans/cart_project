@@ -17,7 +17,7 @@
 
               <div class="caption">
                 <h4><%= link_to product.name, product_path(product) %></h4>
-                <p><%= truncate(product.description, length: 20) %></p>
+                <p><%= truncate(product.description, length: 17) %></p>
                 <p>$ <%= product.price %><p>
                 <%= link_to 'add to cart', add_to_cart_product_path(product), method: :post, class: "btn btn-default" %>
               </div>
@@ -30,7 +30,7 @@
         <%= paginate @products %>
       </div>
     </div>    
-    
+
     <div class="col-sm-4 col-md-3">
       <%= render partial: "shared/cart" %>
     </div>

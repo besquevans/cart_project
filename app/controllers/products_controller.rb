@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :add_to_cart, :remove_from_cart, :adjust_item]
   
   def index
-    @products = Product.page(params[:page]).per(10)
+    @products = Product.page(params[:page]).per(12)
     @items = current_cart.cart_items
   end
 
