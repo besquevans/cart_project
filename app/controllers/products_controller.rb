@@ -3,10 +3,11 @@ class ProductsController < ApplicationController
   
   def index
     @products = Product.page(params[:page]).per(10)
+    @items = current_cart.cart_items
   end
 
   def show
-
+    @items = current_cart.cart_items
   end
 
   def add_to_cart   

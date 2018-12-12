@@ -26,16 +26,17 @@ namespace :dev do
 
   task fake_product: :environment do
     Product.destroy_all
-    url = "http://www.splashbase.co/api/v1/images/random"
+    url = "http://www.splashbase.co/api/v1/images/random"   
+
     20.times do
       response = RestClient.get(url)
       data = JSON.parse(response.body)
-
       product = Product.create!(        
         name: FFaker::Product.product,    
         description: FFaker::Lorem.paragraph,
         price: rand(1..20),
         remote_image_url: data["url"]
+        #image: FFaker::Avatar.image
       )
     end
 

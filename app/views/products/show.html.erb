@@ -1,23 +1,28 @@
 <div class="container">
   <div class="row">
-    
-    <div class="col-md-4">
-      <%= image_tag @product.image.url, class: "img-responsive center-block" %>
-      <br>
-      
-    </div>
-    <div class="col-md-8">
-      <div class="well">
-        <h1><%= @product.name %></h1>
-        <h3>$ <%= @product.price %></h3>       
+    <div class="col-sm-6 col-md-9">
+      <div class="col-md-4">
+        <%= image_tag @product.image.url, class: "img-responsive center-block" %>
+        <br>
+        
       </div>
-      
-      <%= simple_format @product.description %>
-      
-      <br/>
-      <h3>count</h3>   
-      <h3>add</h3>  
+      <div class="col-md-8">
+        <div class="well">
+          <h3><%= @product.name %></h3>
+          <h3>$ <%= @product.price %></h3>       
+        </div>
+        
+        <%= simple_format @product.description %>
+        
+        <br/>
+        <h5>
+          <%= link_to 'add to cart', add_to_cart_product_path(@product), method: :post, class: "btn btn-default" %>
+        </h5>
+      </div>
     </div>
 
+    <div class="col-sm-4 col-md-3">
+      <%= render partial: "shared/cart" %>
+    </div>
   </div>
 </div>
