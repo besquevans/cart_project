@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :products
+    resources :orders
     root "products#index"
   end
 
@@ -15,4 +16,8 @@ Rails.application.routes.draw do
   end
   
   resource :cart   #當你設定單數資源時，網址的表達會變成 /cart 而不是 /cart/:id，就會直接對應到 show action
+
+  resource :orders do
+    post :check_spgateway, on: :member
+  end
 end
