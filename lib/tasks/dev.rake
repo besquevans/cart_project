@@ -43,4 +43,21 @@ namespace :dev do
     puts "have created fake products"
     puts "now you have #{Product.count} products data"
   end
+
+  task fake_order: :environment do
+    Order.destroy_all
+    
+    20.times do
+        order = Order.create!(        
+        sn: FFaker::SSNSE.ssn,    
+        name: FFaker::Name.name,
+        address: FFaker::AddressUS.street_address,
+        amount: rand(1..4),
+        phone: FFaker::PhoneNumber.short_phone_number
+      )
+    end
+
+    puts "have created fake products"
+    puts "now you have #{Product.count} products data"
+  end
 end
