@@ -1,5 +1,4 @@
-class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+class ApplicationController < ActionController::Base 
 
   helper_method :current_cart #可以直接在 View 呼叫 current_cart 方法
 
