@@ -1,8 +1,13 @@
 <div class="container">
-   <h1>後台</h1>
+   <h3>Product後台</h3>
    <div class="row">
      <div class="col-md-12">
-       <div>
+      <div>
+        <%= link_to 'Product', admin_products_path %> |
+        <%= link_to 'Order', admin_orders_path %>
+      </div>
+      </br>
+      <div>
         <%= link_to 'New Product', new_admin_product_path, class: "btn btn-primary" %>
       </div>
       <br>
