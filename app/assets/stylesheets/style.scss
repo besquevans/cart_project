@@ -1,4 +1,4 @@
-.product-item {
+.product-box {
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 4px;
@@ -6,12 +6,12 @@
   margin: 20px -10px;
 }
 
-.product-item img {
+.product-box img {
   height: 100px;
   width: 130px;
 }
 
-.product-item .caption {
+.product-box .caption {
   height: 190px;
   padding: 10px;
 }
