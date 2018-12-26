@@ -16,7 +16,7 @@
         
         <br/>
         <h5>
-          <%= link_to 'add to cart', add_to_cart_product_path(@product), method: :post, class: "btn btn-default" %>
+          <%= button_to 'add to cart', add_to_cart_product_path(@product), remote: true, class: "btn btn-default" %>
         </h5>
       </div>
     </div>

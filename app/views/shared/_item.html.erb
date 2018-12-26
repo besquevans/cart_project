@@ -10,12 +10,12 @@
   <div class="col-sm-6 col-md-8">
     <p><%= item.product.name %></p>
     <p>$ <%= item.product.price %></p>
-    <p>
-      <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post %>
-      <%= item.quantity %>
-      <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post %>
-        
+    <div class="cart-item-adjust">
+      <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post, remote: true %>
+      <span class="cart-<%= item.product.id %>-qty"><%= item.quantity %></span>  
+      <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post, remote: true %>
+      <!----ink_to 不可以省略method: :post ，button_to可以----->  
       <%= button_to 'Delete', remove_from_cart_product_path(item.product), remote: true, class: "btn btn-default" %>
-    </p>
+    </div>
   </div>
 </div>

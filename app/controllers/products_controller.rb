@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
       cart_item.save
     end
 
-    redirect_back(fallback_location: root_path)
+    #redirect_back(fallback_location: root_path)
   end
 
   private
