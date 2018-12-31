@@ -10,7 +10,7 @@
         <div class="order-status">
           <div class="col-md-6">
             <p>Payment Status: <%= f.select :payment_status, Order::PAYMENT_STATUS %></p>
-            <p>Shipping Status: <%= f.select :shopping_status, Order::SHIPPING_STATUS %></p>
+            <p>Shipping Status: <%= f.select :shipping_status, Order::SHIPPING_STATUS %></p>
             <%= f.submit %>
           </div>
         </div>

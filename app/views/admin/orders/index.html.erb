@@ -15,7 +15,7 @@
             <th>Customer</th>
             <th>Amount</th>
             <th>Payment status</th>
-            <th>Shopping status</th>
+            <th>Shipping status</th>
             <th>Order Detail</th>
           </tr>
         </thead>
@@ -27,7 +27,7 @@
             <td><%= order.user.email %></td>
             <td><%= order.amount %></td>
             <td><%= order.payment_status %></td>
-            <td><%= order.shopping_status %></td>
+            <td><%= order.shipping_status %></td>
             <td>
               <%= link_to 'Edit', edit_admin_order_path(order) %>
             </td>
