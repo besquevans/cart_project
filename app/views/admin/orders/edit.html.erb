@@ -1,42 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class= "order-content">
+    <div class= "order-content clearfix">
       <%= form_for [:admin, @order] do |f| %>
         <h3>Order#<%= @order.id %></h3>
         <div class="order-detail">
-          <div class="col-md-6">
-            <div class="orderitems-list">
-              <table class="table table-striped">       
-                <tbody>
-                  <% @order_items.each do |item| %>
-                  <tr>
-                    <td><%= item.product.name %></td>
-                    <td><%= item.quantity %></td>
-                    <td>$ <%= item.price %></td>
-                  </tr>
-                    
-                  <% end %>
-                </tbody>               
-                <tbody> 
-                  <tr>
-                    <th><p>Subtotal</p></th>
-                    <th></th>
-                    <th>$ <%= @order.amount %></th>                       
-                  </tr>                                                              
-                </tbody>
-              </table>
-            </div>
-
-            <div class="shopping_info">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item list-group-item-info">Shopping Information</li>
-                <li class="list-group-item">Name: <%= @order.name %></li>
-                <li class="list-group-item">Phone: <%= @order.phone %></li>
-                <li class="list-group-item">Address: <%= @order.address %></li>
-              </ul>
-              
-            </div>
-          </div>
+          <%= render partial: "shared/order-detail" , locals: { order: @order } %>
         </div>
 
         <div class="order-status">
