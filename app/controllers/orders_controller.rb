@@ -52,36 +52,12 @@ class OrdersController < ApplicationController
         amount: @order.amount
         )
 
-      spgateway_data = {
-        MerchantID: "MS35549602",
-        Version: 1.4,
-        RespondType: "JSON",
-        TimeStamp: Time.now.to_i,
-        MerchantOrderNo: "#{@payment.id}AC",
-        Amt: @order.amount,
-        ItemDesc: @order.name,
-        ReturnURL: spgateway_return_url,
-        Email: @order.user.email,
-        LoginType: 0
-      }.to_query
+      spgateway_data = Spgateway.new(@payment).generate_form_data(spgateway_return_url)
 
-      hash_key = "vO0CaLGdfRzJUKd8N4gjAuRHKb6LgM5w"
-      hash_iv = "aINGNEwjzxMYJRvC"
-
-      cipher = OpenSSL::Cipher::AES256.new(:CBC)
-      cipher.encrypt
-      cipher.key = hash_key
-      cipher.iv  = hash_iv
-      encrypted = cipher.update(spgateway_data) + cipher.final
-      aes = encrypted.unpack('H*').first    # binary 轉 hex
-
-      str = "HashKey=#{hash_key}&#{aes}&HashIV=#{hash_iv}"
-      sha = Digest::SHA256.hexdigest(str).upcase
-
-      @merchant_id = "MS35549602"
-      @trade_info = aes
-      @trade_sha = sha
-      @version = "1.4"
+      @merchant_id = spgateway_data[:MerchantID]
+      @trade_info = spgateway_data[:TradeInfo]
+      @trade_sha = spgateway_data[:TradeSha]
+      @version = spgateway_data[:Version]
 
       render layout: false
       #將 layouts/application.html.erb 關掉，也就是不需要 Navbar，目的是讓畫面愈快愈好
