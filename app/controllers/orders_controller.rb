@@ -36,7 +36,22 @@ class OrdersController < ApplicationController
     if @order.shipping_status == "not_shipped"
       @order.shipping_status = "cancelled"
       @order.save
-      redirect_to orders_path, alert: "order##{order.sn} cancelled."
+      redirect_to orders_path, alert: "order##{@order.sn} cancelled."
+    end
+  end
+
+  def checkout_spgateway
+    @order = current_user.orders.find(params[:id])
+    if @order.payment_status != "not_paid"
+      flash[:alert] = "Order has been paid."
+      redirect_to orders_path
+    else
+      @payment = Payment.create(
+        sn: Time.now.to_i,
+        order_id: @order.id,
+        amount: @order.amount
+        )
+      render layout: false
     end
   end
 
