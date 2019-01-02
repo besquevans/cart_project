@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base 
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :exception   #啟動 CSRF 安全機制，Rails在表單裡插入隱藏的 Token 憑證
 
   helper_method :current_cart #可以直接在 View 呼叫 current_cart 方法
 

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   root "products#index"
 
+  post 'spgateway/return'
+
   resources :products, only: [:index, :show] do 
     post :add_to_cart, on: :member
     post :remove_from_cart, on: :member
