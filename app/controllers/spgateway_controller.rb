@@ -1,10 +1,8 @@
 class SpgatewayController < ApplicationController
-  skip_before_action :verify_authenticity_token  
-  #關閉 CSRF 安全機制
+  skip_before_action :verify_authenticity_token
 
   def return
     # 比對回傳的 SHA 和我們自行加密的 SHA 是否一樣
-
     trade_info = spagatway_params['TradeInfo']
     trade_sha = spagatway_params['TradeSha']
 
