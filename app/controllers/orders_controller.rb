@@ -1,7 +1,4 @@
 class OrdersController < ApplicationController
-  def check_spgateway
-
-  end
 
   def index
     @orders = current_user.orders.order(created_at: :desc)

@@ -8,8 +8,6 @@ class SpgatewayController < ApplicationController
     trade_info = spagatway_params['TradeInfo']
     trade_sha = spagatway_params['TradeSha']
 
-      data = JSON.parse(plain)
-    end
     data = Spgateway.decrypt(trade_info, trade_sha)
 
     # 根據參數的 MerchantOrderNo，查出 payment 實例

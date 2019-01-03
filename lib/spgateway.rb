@@ -1,4 +1,5 @@
 class Spgateway
+
   mattr_accessor :merchant_id
   mattr_accessor :hash_key
   mattr_accessor :hash_iv
@@ -40,23 +41,6 @@ class Spgateway
     }
   end
 
- 
-  def encrypt(params_data)
-    cipher = OpenSSL::Cipher::AES256.new(:CBC)
-    cipher.encrypt
-    cipher.key = self.hash_key
-    cipher.iv  = self.hash_iv
-    encrypted = cipher.update(params_data.to_query) + cipher.final
-    aes = encrypted.unpack('H*').first
-  end
-
- 
-  def self.generate_aes_sha256(trade_info)
-    str = "HashKey=#{self.hash_key}&#{trade_info}&HashIV=#{self.hash_iv}"
-
-    Digest::SHA256.hexdigest(str).upcase
-  end
-
   def self.decrypt(trade_info, trade_sha)
     return nil if self.generate_aes_sha256(trade_info) != trade_sha
  
@@ -67,17 +51,27 @@ class Spgateway
     decipher.iv = self.hash_iv
  
     binary_encrypted = [trade_info].pack('H*') # hex to binary
-
     plain = decipher.update(binary_encrypted) + decipher.final
  
     # strip last padding
-
     if plain[-1] != '}'
-
       plain = plain[0, plain.index(plain[-1])]
     end
-
  
     return JSON.parse(plain)
+  end
+ 
+  def encrypt(params_data)
+    cipher = OpenSSL::Cipher::AES256.new(:CBC)
+    cipher.encrypt
+    cipher.key = self.hash_key
+    cipher.iv  = self.hash_iv
+    encrypted = cipher.update(params_data.to_query) + cipher.final
+    aes = encrypted.unpack('H*').first
+  end
+ 
+  def self.generate_aes_sha256(trade_info)
+    str = "HashKey=#{self.hash_key}&#{trade_info}&HashIV=#{self.hash_iv}"
+    Digest::SHA256.hexdigest(str).upcase
   end
 end
