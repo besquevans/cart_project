@@ -12,6 +12,8 @@
     <%= link_to 'View Cart', cart_path(current_cart), class: "btn btn-default" %>
     <br>   
   </div>
-  <%= link_to 'My Orders', orders_path(current_user.orders), class: "btn btn-default" %>
+  <% if !!current_user %>
+    <%= link_to 'My Orders', orders_path(current_user.orders), class: "btn btn-default" %>
+  <% end %>
 </section>
 

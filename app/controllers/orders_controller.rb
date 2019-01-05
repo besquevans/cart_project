@@ -46,15 +46,9 @@ class OrdersController < ApplicationController
       @payment = Payment.create(
         sn: Time.now.to_i,
         order_id: @order.id,
+        payment_method: params[:payment_method],
         amount: @order.amount
         )
-
-      spgateway_data = Spgateway.new(@payment).generate_form_data(spgateway_return_url)
-
-      @merchant_id = spgateway_data[:MerchantID]
-      @trade_info = spgateway_data[:TradeInfo]
-      @trade_sha = spgateway_data[:TradeSha]
-      @version = spgateway_data[:Version]
 
       render layout: false
       #將 layouts/application.html.erb 關掉，也就是不需要 Navbar，目的是讓畫面愈快愈好

@@ -12,7 +12,9 @@
               <p>Payment Status: <%= order.payment_status %></p>
               <p>Shipping Status: <%= order.shipping_status %></p>
               <% if order.payment_status == "not_paid" && order.shipping_status != "cancelled" %>
-                <%= link_to "Pay now", checkout_spgateway_order_path(order), method: :post, class: "btn btn-info" %>
+                <% Payment::PAYMENT_METHODS.each do |method| %>
+                  <%= link_to method, checkout_spgateway_order_path(order, payment_method: method), method: :post, class: "btn btn-primary" %>
+                <% end %>
               <% end %>
               <% if order.shipping_status == "not_shipped" %>
                 <%= link_to "Cancell Order", order_path(order), method: :patch, class: "btn btn-default" %>
