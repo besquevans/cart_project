@@ -5,7 +5,7 @@ class Spgateway
   mattr_accessor :hash_iv
   mattr_accessor :url
   mattr_accessor :notify_url
-
+  
   def initialize(payment)
     @payment = payment
 
@@ -28,8 +28,8 @@ class Spgateway
       Amt: @payment.amount,
       ItemDesc: @payment.order.name,
       ReturnURL: return_url,
-      Email: @payment.order.user.email,
       NotifyURL: self.notify_url,
+      Email: @payment.order.user.email,
       LoginType: 0,
       CREDIT: 0,
       WEBATM: 0,

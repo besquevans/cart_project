@@ -1,3 +1,5 @@
+<% cart = current_cart %>
 $('.product-<%= @product.id %>').remove();
 
-$('.amount').text('<%= current_cart.subtotal %>')
+$('.amount').text('<%= current_cart.subtotal %>');
+

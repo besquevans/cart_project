@@ -1,8 +1,9 @@
 <% item = current_cart.find_item_by(@product) %>
+<% cart = current_cart %>
 <% if item.quantity == 1 %>
   $('.item-list').append('<%= j render partial: "shared/item", locals: { item: item } %>');
 <% else %>
   $('.cart-<%= @product.id %>-qty').text("<%= item.quantity %>");
 <% end %>
 
-$('.amount').text('<%= current_cart.subtotal %>')
+$('.amount').text('<%= current_cart.subtotal %>');

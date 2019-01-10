@@ -11,7 +11,7 @@ namespace :dev do
     )
     puts "root"
 
-    10.times do |i|
+    30.times do |i|
       user = User.new(
         email: FFaker::Internet.free_email,
         password: "123456",     
@@ -26,7 +26,7 @@ namespace :dev do
     Product.destroy_all
     url = "http://www.splashbase.co/api/v1/images/random"   
 
-    20.times do
+    100.times do
       response = RestClient.get(url)
       data = JSON.parse(response.body)
       product = Product.create!(        
@@ -47,12 +47,12 @@ namespace :dev do
     Order.destroy_all
     Cart.destroy_all
 
-    20.times do
+    50.times do
       user = User.all.sample
       cart = Cart.create!
 
       #put product into cart
-      rand(10).times do
+      rand(1..10).times do
         product = Product.all.sample
         cart.add_cart_item(product)
       end
@@ -71,5 +71,14 @@ namespace :dev do
       cart.destroy
     end
     puts "now you have #{Order.count} order record"
+  end
+
+  task fake_all: :environment do
+    #Rake::Task['db:migrate'].execute
+    #Rake::Task['db:seed'].execute
+    Rake::Task['dev:fake_user'].execute
+    Rake::Task['dev:fake_product'].execute
+    Rake::Task['dev:fake_order'].execute
+    #
   end
 end

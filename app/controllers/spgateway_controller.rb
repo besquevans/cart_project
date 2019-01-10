@@ -18,13 +18,16 @@ class SpgatewayController < ApplicationController
 
   def notify
     payment = Payment.find_and_process(spagatway_params)
-  
+
     if payment&.save
+      # send paid email
       render text: "1|OK"
     else
       render text: "0|ErrorMessage"
     end
+    byebug
   end
+  
 
   private
 
