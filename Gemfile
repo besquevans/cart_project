@@ -45,6 +45,10 @@ gem 'ffaker'
 gem 'rest-client'
 #分頁
 gem 'kaminari'
+#facebook login
+gem 'omniauth-facebook'
+#set evn var
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
