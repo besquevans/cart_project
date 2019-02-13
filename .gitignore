@@ -27,7 +27,7 @@
 /public/assets
 .byebug_history
 config/email.yml
-config/spgateway.yml
+#config/spgateway.yml
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
