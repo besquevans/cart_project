@@ -25,20 +25,17 @@ namespace :dev do
   task fake_product: :environment do
     Product.destroy_all
 
-    photo_number = rand(1..30).to_s
-
-    url = "https://s3-ap-northeast-1.amazonaws.com/cart-photo-album/" + photo_number + ".jpg"
-    
-
     100.times do
+      photo_number = rand(1...30).to_s
+      url = "https://s3-ap-northeast-1.amazonaws.com/cart-photo-album/" + photo_number + ".jpg"
       #response = RestClient.get(url)
       #data = JSON.parse(response.body)
       product = Product.create!(        
         name: FFaker::Product.product,    
         description: FFaker::Lorem.paragraph,
         price: rand(1..20),
-        remote_image_url: url
-        #image: FFaker::Avatar.image
+        #remote_image_url: url
+        image: url
       )
     end
 

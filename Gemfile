@@ -50,7 +50,7 @@ gem 'omniauth-facebook'
 #set evn var
 gem 'figaro'
 
-gem 'fog-aws'
+gem "fog-aws"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
