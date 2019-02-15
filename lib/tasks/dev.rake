@@ -34,8 +34,8 @@ namespace :dev do
         name: FFaker::Product.product,    
         description: FFaker::Lorem.paragraph,
         price: rand(1..20),
-        #remote_image_url: url
-        image: url
+        remote_image_url: url
+        #image: url
       )
     end
 
