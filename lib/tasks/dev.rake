@@ -48,7 +48,7 @@ namespace :dev do
     Order.destroy_all
     Cart.destroy_all
 
-    50.times do
+    50.times do |i|
       user = User.all.sample
       cart = Cart.create!
 
@@ -60,7 +60,7 @@ namespace :dev do
 
       #checkout cart to order
       order = Order.create!(        
-        sn: Time.now.to_i,    
+        sn: Time.now.to_i + i%1000,    
         name: user.email.split("@").first,
         user_id: user.id,
         amount: cart.subtotal,
