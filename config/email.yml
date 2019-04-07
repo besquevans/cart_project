@@ -1,17 +1,19 @@
 development:
-  address: "smtp.gmail.com"
+  address: "smtp.mailgun.org"
   port: 587
-  domain: "gmail.com"
+  domain: "besque.com"
   authentication: "plain"
   user_name: <%= ENV["EMAIL_USERNAME"] %>
   password: <%= ENV["EMAIL_PASSWORD"] %>
   enable_starttls_auto: true
 
 production:
-  address: "smtp.gmail.com"
+  address: "smtp.mailgun.org"
   port: 587
-  domain: "gmail.com"
+  domain: "besque.com"
   authentication: "plain"
   user_name: <%= ENV["EMAIL_USERNAME"] %>
   password: <%= ENV["EMAIL_PASSWORD"] %>
   enable_starttls_auto: true
+
+  
