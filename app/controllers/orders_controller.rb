@@ -11,20 +11,23 @@ class OrdersController < ApplicationController
       session[:new_order_data] = params[:order]
       # redirect to devise login page
       redirect_to new_user_session_path
-    else
+    elsif current_cart.subtotal != 0
       @order = current_user.orders.new(order_params)
-      @order.sn = Time.now.to_i
+      @order.sn = Time.now.to_i+current_user.id
       @order.add_order_items(current_cart)
       @order.amount = current_cart.subtotal
       if @order.save
         current_cart.destroy
         session.delete(:new_order_data)
-        UserMailer.notify_order_create(@order).deliver_now!
+        #UserMailer.notify_order_create(@order).deliver_now!
         redirect_to orders_path, notice: "new order created"
       else
         @items = current_cart.cart_items
         render "carts/show"
       end
+    else
+      flash[:alert] = "Cart created failed."
+      redirect_to root_path
     end
   end
 

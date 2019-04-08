@@ -60,7 +60,7 @@ namespace :dev do
 
       #checkout cart to order
       order = Order.create!(        
-        sn: Time.now.to_i + i%1000,    
+        sn: Time.now.to_i + user.id,    
         name: user.email.split("@").first,
         user_id: user.id,
         amount: cart.subtotal,

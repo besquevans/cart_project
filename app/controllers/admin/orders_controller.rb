@@ -14,10 +14,10 @@ class Admin::OrdersController < Admin::BaseController
     if @order.update(order_params)
       flash[:notice] = "order was successfully updated"
       if @order.shipping_status == "shipped"
-        UserMailer.notify_order_shipped(@order).deliver_now
+        #UserMailer.notify_order_shipped(@order).deliver_now
       end
       if @order.payment_status == "paid"
-        UserMailer.notify_order_paid(@order).deliver_now
+        #UserMailer.notify_order_paid(@order).deliver_now
       end
       redirect_to admin_orders_path(@order)
     else
