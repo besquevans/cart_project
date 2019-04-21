@@ -1,18 +1,28 @@
 <section id="my-cart">
   <div class ="item-list">
     <% current_cart.cart_items.each do |item| %>
-      <%= render partial: "shared/item", locals: { item: item } %>
+      <div class="my-item clearfix">
+        <%= render partial: "shared/item", locals: { item: item } %>
+      </div>
+      
     <% end %>
   </div>
-  <div class="subtotal">
+  <div class="under-my-cart">
+    <div class="subtotal">
     <p>SUBTOTAL</p>
-    <p class="amount"><%= current_cart.subtotal %></p>
+    <p class="amount">$ <%= current_cart.subtotal %></p>
   </div>
+  
   <div class="button">   
+    <% if current_cart.subtotal != 0 %>
     <%= link_to 'View Cart', cart_path(current_cart), class: "btn btn-default" %>  
+    <% end %>
   </div>
+  
   <% if !!current_user %>
     <%= link_to 'My Orders', orders_path(current_user.orders), class: "btn btn-default" %>
   <% end %>
+  </div>
+  
 </section>
 

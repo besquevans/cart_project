@@ -3,7 +3,8 @@
 
     </br>
     <div class="col-sm-6 col-md-9">
-      <% @products.each do |product| %>
+      <div id="products" class="clearfix">
+        <% @products.each do |product| %>
         <div class="hidden-xs">
           <div class="col-sm-4 col-md-3">
             <div class="product-box product_<%= product.id %>">
@@ -19,12 +20,16 @@
                 <h4><%= link_to product.name, product_path(product) %></h4>
                 <p><%= truncate(product.description, length: 17) %></p>
                 <p>$ <%= product.price %><p>
-                <%= button_to 'add to cart', add_to_cart_product_path(product), remote: true, class: "btn btn-default" %>
+                  <div class="add-to-cart">
+                    <%= button_to 'add to cart', add_to_cart_product_path(product), remote: true, class: "btn btn-default" %>
+                  </div>
               </div>
             </div>
           </div>
         </div>
       <% end %>
+      </div>
+      
 
       <div class="text-center">
         <%= paginate @products %>
