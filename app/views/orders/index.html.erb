@@ -16,9 +16,8 @@
                   <%= link_to method, checkout_spgateway_order_path(order, payment_method: method), method: :post, class: "btn btn-primary" %>
                 <% end %>
               <% end %>
-              <% if order.shipping_status == "not_shipped" %>
-                <%= link_to "Cancell Order", order_path(order), method: :patch, class: "btn btn-default" %>
-              <% end %>
+              <%= show_payment_methods(order) %>
+              <%= show_cancer_order(order) %>
             </div>
           </div>
         <% end %>
