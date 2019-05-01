@@ -7,19 +7,16 @@
   <hr>
   <div class="under-my-cart">
     <div class="subtotal">
-    <p>SUBTOTAL</p>
-    <p class="amount">$ <%= current_cart.subtotal %></p>
-  </div>
+      <p>SUBTOTAL</p>
+      <p class="amount">$ <%= current_cart.subtotal %></p>
+    </div>
   
-  <div class="button">   
-    <% if current_cart.subtotal != 0 %>
-    <%= link_to 'View Cart', cart_path(current_cart), class: "btn btn-default" %>  
-    <% end %>
-  </div>
-  
-  <% if !!current_user %>
-    <%= link_to 'My Orders', orders_path(current_user.orders), class: "btn btn-default" %>
-  <% end %>
+    <div class="button">   
+      <%= show_my_cart() %>
+    </div>
+    <div class="button">
+      <%= show_my_orders() %>
+    </div>
   </div>
   
 </section>
