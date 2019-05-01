@@ -17,7 +17,7 @@
           <% @items.each do |item| %>
             <tr>
               <th scope="row">
-                <%= show_product_picture(item.product) %>
+                <%= show_product_picture item.product %>
               </th>
               <td><%= item.product.name %></td>
               <td><%= item.product.price %></td>

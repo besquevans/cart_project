@@ -16,7 +16,7 @@
                   <%= link_to method, checkout_spgateway_order_path(order, payment_method: method), method: :post, class: "btn btn-primary" %>
                 <% end %>
               <% end %>
-              <%= show_cancer_order(order) %>
+              <%= show_cancer_order "Cancer Order", order %>
             </div>
           </div>
         <% end %>

@@ -1,8 +1,7 @@
 <section id="my-cart">
   <div class ="item-list">
-    <% current_cart.cart_items.each do |item| %>
-      <%= render partial: "shared/item", locals: { item: item } %>
-    <% end %>
+      <!------collection取代.each do |item|...end----------->
+      <%= render partial: "shared/item", collection: current_cart.cart_items %>
   </div>
   <hr>
   <div class="under-my-cart">
@@ -12,10 +11,10 @@
     </div>
   
     <div class="button">   
-      <%= show_my_cart() %>
+      <%= show_my_cart "View Cart" %>
     </div>
     <div class="button">
-      <%= show_my_orders() %>
+      <%= show_my_orders "My Orders" %>
     </div>
   </div>
   

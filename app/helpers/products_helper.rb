@@ -4,7 +4,7 @@ module ProductsHelper
     if product.image?
       image_tag product.image.url, class: "img-responsive center-block"
     else
-      content_tag(:span, class: "glyphicon glyphicon-picture") 
+      content_tag :span, class: "glyphicon glyphicon-picture"
     end
   end
 end
