@@ -1,15 +1,11 @@
 module OrdersHelper
-#訂單未取消顯示取消訂單
-  def show_cancer_order(label, order)
-    if order.shipping_status == "not_shipped"
-      link_to label, order_path(order), method: :patch, class: "btn btn-default" 
-    end
+  def can_pay?(order)
+    order.payment_status == "not_paid" && order.shipping_status != "cancelled"
   end
 
-#登入的使用者可以查看訂單
-  def show_my_orders(label)
-    if !!current_user
-      link_to label, orders_path(current_user.orders), class: "btn btn-default"
-    end
+#訂單未付款
+  def not_shipped?(order)
+    order.shipping_status == "not_shipped"
   end
+
 end

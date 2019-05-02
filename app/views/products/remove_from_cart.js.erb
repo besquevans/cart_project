@@ -3,6 +3,6 @@ $('.product-<%= @product.id %>').remove();
 
 $('.amount').text('<%= current_cart.subtotal %>');
 
-<% if current_cart.cart_items.size == 0 %>
-  $('.button').empty();
+<% if nothing_in_cart? %>
+  $('#cart-button').empty();
 <% end %>

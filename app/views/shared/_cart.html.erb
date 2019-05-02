@@ -10,11 +10,15 @@
       <p class="amount">$ <%= current_cart.subtotal %></p>
     </div>
   
-    <div class="button">   
-      <%= show_my_cart "View Cart" %>
+    <div class="button" id="cart-button">   
+      <% if cart_has_things? %>
+        <%= link_to "View Cart", cart_path(current_cart), class: "btn btn-default"%>
+      <% end %>
     </div>
     <div class="button">
-      <%= show_my_orders "My Orders" %>
+      <% if !!current_user %>
+        <%= link_to "My Orders", orders_path(current_user.orders), class: "btn btn-default" %>
+      <% end %>
     </div>
   </div>
   

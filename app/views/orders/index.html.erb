@@ -11,12 +11,14 @@
             <div class="col-md-6">
               <p>Payment Status: <%= order.payment_status %></p>
               <p>Shipping Status: <%= order.shipping_status %></p>
-              <% if order.payment_status == "not_paid" && order.shipping_status != "cancelled" %>
+              <% if can_pay?(order) %>
                 <% Payment::PAYMENT_METHODS.each do |method| %>
                   <%= link_to method, checkout_spgateway_order_path(order, payment_method: method), method: :post, class: "btn btn-primary" %>
                 <% end %>
               <% end %>
-              <%= show_cancer_order "Cancer Order", order %>
+              <% if not_shipped?(order) %>
+                <%= link_to "Cancer Order", order_path(order), method: :patch, class: "btn btn-default" %>
+              <% end %>
             </div>
           </div>
         <% end %>

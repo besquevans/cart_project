@@ -1,6 +1,6 @@
 <% item = current_cart.find_item_by(@product) %>
 <% cart = current_cart %>
-<% if item.quantity == 1 %>
+<% if item_only_one?(item) %>
   $('.item-list').append('<%= j render partial: "shared/item", locals: { item: item } %>');
   $('.button').empty().append('<%= link_to "View Cart", cart_path(current_cart), class: "btn btn-default" %>');
 <% else %>
