@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = current_user.orders.order(created_at: :desc).page(params[:page]).per(5)
+    @orders = Order.includes(:user, :products).where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(3)
   end
 
   def create
