@@ -13,6 +13,12 @@ Rails.application.routes.draw do
     post :adjust_item, on: :member
   end
   
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :products, only: [:index, :show]
+    end
+  end
+
   resource :cart   #當你設定單數資源時，網址的表達會變成 /cart 而不是 /cart/:id，就會直接對應到 show action
 
   resources :orders do
