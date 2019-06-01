@@ -1,16 +1,6 @@
 class Api::V1::ProductsController < ApiController
   def index 
     @products = Product.find_each
-    render json: {
-      data: @products.map do |product|
-        {
-          name: product.name,
-          description: product.description,
-          price: product.price,
-          image: product.image
-        }
-      end
-    }
   end
 
   def show
@@ -21,12 +11,7 @@ class Api::V1::ProductsController < ApiController
         status: 400
       }
     else
-      render json: {
-        name: @product.name,
-        description: @product.description,
-        price: @product.price,
-        image: @product.image
-      }
+      render "api/v1/products/show"
     end
   end
 end
