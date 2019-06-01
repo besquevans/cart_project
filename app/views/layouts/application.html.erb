@@ -45,6 +45,10 @@
       </div>
     </nav>
 
+    <% if current_user %>
+      <p class="pull-right">API Token : <code><%= current_user.authentication_token %></code></p>
+    <% end %>
+
     <% if flash[:notice] %>
     <div class="container">
       <div class="row">

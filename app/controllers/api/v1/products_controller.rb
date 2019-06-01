@@ -1,4 +1,5 @@
 class Api::V1::ProductsController < ApiController
+  before_action :authenticate_user!, except: :index
   def index 
     @products = Product.find_each
   end
