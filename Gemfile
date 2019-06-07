@@ -55,6 +55,7 @@ gem "fog-aws"
 gem 'rack-attack'
 
 
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -68,6 +69,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  #自動安全漏洞測試
+  gem 'brakeman'
+  #檢測 gem 安全漏洞
+  gem 'bundler-audit'
 end
 
 group :test do
