@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def set_cart
     if session[:cart_id]
-      @cart = Cart.find_by(id: session[:cart_id])
+      @cart = Cart.includes(:cart_items, cart_items: :product).find_by(id: session[:cart_id])
     end
 
     @cart ||= Cart.create # @cart nil產生一筆新的 Cart 物件

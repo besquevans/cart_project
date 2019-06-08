@@ -73,6 +73,11 @@ group :development do
   gem 'brakeman'
   #檢測 gem 安全漏洞
   gem 'bundler-audit'
+  #效能測試
+  gem 'rack-mini-profiler'
+  #N+1 SQL
+  gem 'bullet'
+
 end
 
 group :test do
