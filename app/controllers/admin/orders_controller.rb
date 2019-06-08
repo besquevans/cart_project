@@ -1,7 +1,7 @@
 class Admin::OrdersController < Admin::BaseController
 
   def index
-    @orders = Order.order(id: :desc).page(params[:page]).per(10)
+    @orders = Order.includes(:user).order(id: :desc).page(params[:page]).per(10)
   end
 
   def edit
