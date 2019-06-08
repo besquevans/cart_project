@@ -1,0 +1,55 @@
+<div class="panel panel-order clearfix">
+    <%= form_for [:admin, order] do |f| %>
+        <h3>Order#<%= order.sn %></h3>
+        <div class="order-detail">
+            <div class="col-md-6">
+                <div class="orderitems-list">
+                    <table class="table table-striped">       
+                    <tbody>
+                        <% order.order_items.each do |item| %>
+                        <tr>
+                        <td><%= item.product.name %></td>
+                        <td><%= item.quantity %></td>
+                        <td>$ <%= item.price %></td>
+                        </tr>
+                        
+                        <% end %>
+                    </tbody>               
+                    <tbody> 
+                        <tr>
+                        <th><p>Subtotal</p></th>
+                        <th></th>
+                        <th>$ <%= order.amount %></th>                       
+                        </tr>                                                              
+                    </tbody>
+                    </table>
+                </div>
+                <!--------->
+                <div class="shipping_info">
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-info">Shipping Information</li>
+                    <li class="list-group-item">Name: <%= order.name %></li>
+                    <li class="list-group-item">Phone: <%= order.phone %></li>
+                    <li class="list-group-item">Address: <%= order.address %></li>
+                    </ul>                
+                </div>
+            </div>
+        </div> 
+
+        <div class="order-status">
+            <div class="col-md-6">
+                <p>Payment Status: <%= order.payment_status %></p>
+                <p>Shipping Status: <%= order.shipping_status %></p>
+                <% if can_pay?(order) %>
+                    <% Payment::PAYMENT_METHODS.each do |method| %>
+                        <%= link_to method, checkout_spgateway_order_path(order, payment_method: method), method: :post, class: "btn btn-primary" %>
+                    <% end %>
+                <% end %>
+
+                <% if not_shipped?(order) %>
+                    <%= link_to "Cancer Order", order_path(order), method: :patch, class: "btn btn-default" %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>  

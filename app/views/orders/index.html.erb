@@ -1,29 +1,6 @@
 <div class="container">
   <div class="row">
-    <% @orders.each do |order|%>
-      <div class="panel panel-order clearfix">
-        <%= form_for [:admin, order] do |f| %>
-          <h3>Order#<%= order.sn %></h3>
-          <div class="order-detail">
-            <%= render partial: "shared/order-detail", locals: { order: order } %>
-          </div> 
-          <div class="order-status">
-            <div class="col-md-6">
-              <p>Payment Status: <%= order.payment_status %></p>
-              <p>Shipping Status: <%= order.shipping_status %></p>
-              <% if can_pay?(order) %>
-                <% Payment::PAYMENT_METHODS.each do |method| %>
-                  <%= link_to method, checkout_spgateway_order_path(order, payment_method: method), method: :post, class: "btn btn-primary" %>
-                <% end %>
-              <% end %>
-              <% if not_shipped?(order) %>
-                <%= link_to "Cancer Order", order_path(order), method: :patch, class: "btn btn-default" %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>  
-    <% end %>  
+    <%= render partial: "shared/order_item", :collection => @orders, :as => :order %>
     <div class="text-center">
       <%= paginate @orders %>
     </div>
