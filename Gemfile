@@ -53,7 +53,8 @@ gem 'figaro'
 gem "fog-aws"
 #防禦 DoS
 gem 'rack-attack'
-
+#快取
+gem 'dalli'
 
 
 group :development, :test do

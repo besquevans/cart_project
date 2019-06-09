@@ -66,4 +66,8 @@ Rails.application.configure do
     Bullet.enable = true
     Bullet.rails_logger = true
   end
+
+  #快取
+  config.cache_store = :mem_cache_store
+  config.action_controller.perform_caching = false
 end
