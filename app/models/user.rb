@@ -28,4 +28,13 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  #rspec
+  def self.get_user_count
+    User.all.size
+  end
+
+  def get_order_count
+    orders.all.size
+  end
 end

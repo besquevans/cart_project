@@ -11,5 +11,14 @@ FactoryBot.define do
     price { rand(1..20) }
   end
 
+  factory :cart do
+  end
 
+  factory :order do
+    sn { Time.now.to_i + user.id } 
+    name { user.email.split("@").first }
+    address { FFaker::AddressUS.street_address }
+    phone { FFaker::PhoneNumber.short_phone_number }
+    user
+  end
 end
