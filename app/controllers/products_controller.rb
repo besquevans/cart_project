@@ -39,6 +39,11 @@ class ProductsController < ApplicationController
     #redirect_back(fallback_location: root_path)
   end
 
+  #rspec
+  def about
+    @user_count = User.get_user_count
+  end
+
   private
 
   def set_product
