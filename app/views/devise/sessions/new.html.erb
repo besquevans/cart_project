@@ -20,12 +20,12 @@
     <% end -%>
 
     <div class="actions">
-      <%= f.submit "Log in" %>
+      <%= f.submit "Log in", class: "btn btn-primary" %>
     </div>
   <% end %><br>
 
   <div class="field">
-    <%= button_to 'FB Login', user_facebook_omniauth_authorize_path %>
+    <%= button_to 'FB Login', user_facebook_omniauth_authorize_path, class: "btn btn-primary" %>
   </div><br>
 
   <%= render "devise/shared/links" %>
