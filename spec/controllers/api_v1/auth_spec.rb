@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::AuthController, type: :controller do
+  it "signup via email and password" do
+    post "signup", params: { email: '123@gmail.com', password: '123123' }
+    user = User.find_by_email('123@gmail.com')
+    expect(response).to have_http_status(200)
+    expect(JSON.parse(response.body)).to eq({
+      'message' => 'sign up success',
+      'user_id' => user.id
+    })
+  end
+
   #建立一個使用者，然後向 api/v1/login 發出 POST 請求，並傳入該使用者的帳號密碼
   #預期得到的回應是 response status 200，而且 response body 是可以解析的 JSON
   it "login via email and password" do

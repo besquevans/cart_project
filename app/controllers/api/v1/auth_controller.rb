@@ -3,7 +3,17 @@ class Api::V1::AuthController < ApiController
   before_action :authenticate_user!, only: :logout
 
   # POST /api/v1/signup
-  
+  def signup
+    user = User.new(email: params[:email], password: params[:password])
+
+    if user.save
+      render json: {
+        message: "sign up success",
+        user_id: user.id}
+    else
+      render json: {message: "failed", error: user.errors}, status: 400
+    end
+  end
 
   # POST /api/v1/login
   def login
