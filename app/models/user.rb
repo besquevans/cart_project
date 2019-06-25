@@ -37,4 +37,15 @@ class User < ApplicationRecord
   def get_order_count
     orders.all.size
   end
+
+  def self.get_facebook_user_data(access_token)
+    # 需要傳入你的臉書登入權杖
+    # 使用權杖向 Facebook 發送 Request，請求回傳使用者的臉書資料
+  end
+  
+  def self.from_omniauth(auth_hash)
+    # Facebook 回傳的資訊，會再以 Hash 的形式傳入此方法做後續處理
+    # 由於 Facebook 回傳資訊未必能和你的資料庫相容，要在這個方法裡制定標準
+    # 透過你制定的標準，把 Hash 整理成能和 User model 相容的資料
+  end
 end
