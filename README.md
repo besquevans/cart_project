@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[串接金流的購物車網站]
 
-Things you may want to cover:
+使用者： 
+1. 不需要登入可以直接將商品加入購物車 
+2. 登入後可以將購物車內商品加入訂單 
+3. 訂單可以透過第三方金流服務使用信用卡等方式付款 
+4. 可以使用facebook帳號登入
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+管理員： 
+1. 可以建立商品 
+2. 可以看到所有訂單記錄 
+3. 當金流服務通知付款時可以改變訂單狀態
