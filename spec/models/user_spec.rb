@@ -19,4 +19,9 @@ RSpec.describe User, type: :model do
     user.orders << order
     expect(user.get_order_count).to eq(1)
   end
+
+  describe 'Association' do
+    it { should have_many(:orders) }
+  end
+
 end
