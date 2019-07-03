@@ -4,6 +4,8 @@ class Order < ApplicationRecord
   has_many :products, through: :order_items
   has_many :payments
 
+  #必填
+  validates_presence_of :name, :address, :phone
   # set constant to generate select options
   PAYMENT_STATUS = [
     ["Not Paid", :not_paid],
