@@ -11,7 +11,7 @@ feature "User sign up" do
     click_button 'Sign up'
       
     expect(User.count).to eq(1) # you can test model
-    expect(page).to have_content 'Welcome! You have signed up successfully.' 
+    expect(page).to have_content I18n.t("devise.registrations.signed_up")
   end
 
 end

@@ -9,7 +9,7 @@ feature "User signs in" do
     fill_in 'Password', :with => alice.password  # 填寫 Password
     click_button 'Log in'                       # 按下 Sign in 按鈕
     expect(User.count).to eq(1) # you can test model
-    expect(page).to have_content 'Signed in successfully.'
+    expect(page).to have_content I18n.t("devise.sessions.signed_in")
   end
 
 end
