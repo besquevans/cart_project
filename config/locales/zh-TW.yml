@@ -6,6 +6,7 @@
   log_in: 登入
   sign_up: 註冊
   edit_password: 修改密碼
+  hi: 安安，
 
   #購物車
   subtotal: 總金額
@@ -15,6 +16,14 @@
 
   #商品
   add_to_cart: 放入購物車
+  #分頁
+  page:
+    first: "<<"
+    prev: "<"
+    truncate: "..."
+    next: ">"
+    last: ">>"
+
 
   #devise
   devise:

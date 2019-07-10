@@ -32,7 +32,7 @@
                 <li><%= link_to t(:backstage), admin_products_path %></li>
               <% end %>
 
-              <li><p class="navbar-text">Hi, <%= current_user.email %></p></li>
+              <li><p class="navbar-text"><%= t(:hi) + current_user.email %></p></li>
 
               <li><%= link_to(t(:log_out), destroy_user_session_path, method: :delete) %></li>
               <li><%= link_to(t(:edit_password), edit_user_registration_path) %></li>
