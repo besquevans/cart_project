@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "user sign up" do
+feature "User sign up" do
 
   scenario "signing in with correct credentials" do
     visit new_user_registration_path
@@ -13,5 +13,5 @@ feature "user sign up" do
     expect(User.count).to eq(1) # you can test model
     expect(page).to have_content 'Welcome! You have signed up successfully.' 
   end
-  
+
 end
