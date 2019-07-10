@@ -2,7 +2,7 @@
 <% cart = current_cart %>
 <% if item_only_one?(item) %>
   $('.item-list').append('<%= j render partial: "shared/item", locals: { item: item } %>');
-  $('#cart-button').empty().append('<%= link_to "View Cart", cart_path(current_cart), class: "btn btn-default" %>');
+  $('#cart-button').empty().append('<%= link_to t(:my_cart), cart_path(current_cart), class: "btn btn-default" %>');
 <% else %>
   $('.cart-<%= @product.id %>-qty').text("<%= item.quantity %>");
 <% end %>

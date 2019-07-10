@@ -1,0 +1,17 @@
+"zh-TW":
+  #導覽列
+  cart_project: 發大財購物網
+  backstage: 後台
+  log_out: 登出
+  log_in: 登入
+  sign_up: 註冊
+  edit_password: 修改密碼
+
+  #購物車
+  subtotal: 總金額
+  my_cart: 我的購物車
+  my_order: 我的訂單
+  delete: 刪除
+
+  #商品
+  add_to_cart: 放入購物車

@@ -18,6 +18,8 @@ module CartProject
 
     #test Dos : rack-attack
     config.middleware.use Rack::Attack
+
+    config.i18n.default_locale = "zh-TW"
   end
 end
 

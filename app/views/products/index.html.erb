@@ -17,7 +17,7 @@
                 <p><%= truncate(product.description, length: 17) %></p>
                 <p>$ <%= product.price %><p>
                   <div class="add-to-cart">
-                    <%= button_to 'add to cart', add_to_cart_product_path(product), remote: true, class: "btn btn-default" %>
+                    <%= button_to t(:add_to_cart), add_to_cart_product_path(product), remote: true, class: "btn btn-default" %>
                   </div>
               </div>
             </div>
