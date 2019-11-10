@@ -2,6 +2,7 @@
 <% if !item %>
   $('.product-<%= @product.id %>').remove();
 <% else %>
+  $('.total-<%= item.product.id %>-count').text("<%= item.item_total %>");
   $('.cart-<%= item.product.id %>-qty').text("<%= item.quantity %>");
 <% end %>
 

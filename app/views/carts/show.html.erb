@@ -15,22 +15,26 @@
         </thead>
         <tbody>
           <% @items.each do |item| %>
-            <tr>
+            <tr class="product-<%= item.product.id %>" >
               <th scope="row">
                 <%= show_product_picture item.product %>
               </th>
               <td><%= item.product.name %></td>
               <td><%= item.product.price %></td>
               <td>
-                <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post %>
+                <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post, remote: true %>
                 </br> 
-                <%= item.quantity %>
+                <span class="cart-<%= item.product.id %>-qty"><%= item.quantity %></span> 
                 </br> 
-                <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post %>
+                <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post, remote: true %>
               </td>
-              <td><%= item.item_total %></td>
+
               <td>
-                <%= link_to 'Delete', remove_from_cart_product_path(item.product), method: :post %>
+                <span class="total-<%= item.product.id %>-count"><%= item.item_total %></span>
+              </td>
+
+              <td>
+                <%= link_to 'Delete', remove_from_cart_product_path(item.product), method: :post, remote: true %>
               </td>
             </tr>
           <% end %>
@@ -41,7 +45,7 @@
             <td></td>
             <td>Subtotal</td>
             <td></td>
-            <td><%= current_cart.subtotal %></td>
+            <td><p class="amount">$ <%= current_cart.subtotal %></p></td>
             <td></td>
           </tr>
         </tbody>
