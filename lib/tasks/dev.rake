@@ -59,16 +59,21 @@ namespace :dev do
       end
 
       #checkout cart to order
+      i < 40 ? pay = "paid" : pay = "not_paid"
+      
+      i < 30 ? shipping = "shipped" : shipping = "not_shipped"
+      
       order = Order.create!(        
         sn: Time.now.to_i + user.id,    
         name: user.email.split("@").first,
         user_id: user.id,
         amount: cart.subtotal,
         address: FFaker::AddressUS.street_address,
-        phone: FFaker::PhoneNumber.short_phone_number
+        phone: FFaker::PhoneNumber.short_phone_number,
+        shipping_status: shipping,
+        payment_status: pay
       )
       order.add_order_items(cart)
-      order.save!
       cart.destroy
     end
     puts "now you have #{Order.count} order record"

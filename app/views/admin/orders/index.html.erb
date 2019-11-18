@@ -5,8 +5,12 @@
       <div>
         <%= link_to 'Product', admin_products_path %> |
         <%= link_to 'Order', admin_orders_path %>
+        <h5>
+          <span>*Paid Order: <%= Order.where(payment_status: "paid").size %></span>
+          <span>*Shipped Order: <%= Order.where(shipping_status: "shipped").size %></span>
+          <span>*Order Count: <%= Order.find_each.size %></span>
+        </h5>
       </div>
-      </br>
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
