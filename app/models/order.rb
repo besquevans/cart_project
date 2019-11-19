@@ -6,7 +6,7 @@ class Order < ApplicationRecord
 
   #必填
   validates_presence_of :name, :address, :phone
-  validates_numericality_of :amount, greater_than: 0
+  validates_numericality_of :amount, greater_than_or_equal_to: 1
   validates :phone, length: { is: 10 }
   validates :payment_status, inclusion: { in: %w(not_paid paid), message: "%{value} is not a valid PAYMENT_STATUS" }
   validates :shipping_status, inclusion: { in: %w(not_shipped shipped), message: "%{value} is not a valid SHIPPING_STATUS" }
