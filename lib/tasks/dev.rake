@@ -73,8 +73,13 @@ namespace :dev do
         shipping_status: shipping,
         payment_status: pay
       )
+      
       order.add_order_items(cart)
+      order.save
       cart.destroy
+
+      #增加銷售數字
+      order.count_sold
     end
     puts "now you have #{Order.count} order record"
   end

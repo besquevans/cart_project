@@ -16,9 +16,9 @@ class Admin::OrdersController < Admin::BaseController
       if @order.shipping_status == "shipped"
         #UserMailer.notify_order_shipped(@order).deliver_now
       end
-      if @order.payment_status == "paid"
+
+      @order.count_sold
         #UserMailer.notify_order_paid(@order).deliver_now
-      end
       redirect_to admin_orders_path(@order)
     else
       flash.now[:alert] = @order.errors.full_messages.to_sentence

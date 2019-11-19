@@ -30,4 +30,14 @@ class Order < ApplicationRecord
   def subtotal
     order_items.map{ |x| x.item_total }.sum
   end
+
+  def count_sold
+    if payment_status == "paid"
+      order_items.each do |item|
+        product = Product.find(item.product_id)
+        product.sold_count += item.quantity
+        product.save
+      end
+    end
+  end
 end
