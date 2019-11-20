@@ -48,4 +48,8 @@ class User < ApplicationRecord
     # 由於 Facebook 回傳資訊未必能和你的資料庫相容，要在這個方法裡制定標準
     # 透過你制定的標準，把 Hash 整理成能和 User model 相容的資料
   end
+
+  def admin_enough?
+    User.where("role == 'admin'").size > 1 || self.role != "admin"
+  end
 end
