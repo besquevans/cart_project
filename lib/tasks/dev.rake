@@ -6,6 +6,7 @@ namespace :dev do
 
     User.create!(
       email: "root@mail.com",
+      name: "Root",
       password: "123456",
       role: "admin"
     )
@@ -13,7 +14,8 @@ namespace :dev do
 
     30.times do |i|
       user = User.new(
-        email: FFaker::Internet.free_email,
+        email: FFaker::Internet.unique.free_email,
+        name: FFaker::Name.unique.name,
         password: "123456",     
       )
 
