@@ -2,7 +2,12 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :add_to_cart, :remove_from_cart, :adjust_item]
   
   def index
-    @products = Product.page(params[:page]).per(12)
+    if params[:name] != ""
+      @search = Product.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @search = Product.find_each
+    end
+    @products = @search.page(params[:page]).per(12)
     @items = current_cart.cart_items
   end
 
