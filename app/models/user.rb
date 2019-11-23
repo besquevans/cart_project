@@ -6,7 +6,10 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook]
 
   has_many :orders
+
   before_create :generate_authentication_token
+  before_destroy :ckeck_admin_enough
+  before_update :ckeck_admin_enough
 
   def generate_authentication_token
     self.authentication_token = Devise.friendly_token
@@ -49,7 +52,15 @@ class User < ApplicationRecord
     # 透過你制定的標準，把 Hash 整理成能和 User model 相容的資料
   end
 
-  def admin_enough?
-    User.where("role == 'admin'").size > 1 || self.role != "admin"
+  def ckeck_admin_enough
+    unless admin_enough?
+      errors[:base] << "admin not enough!!!"
+      throw :abort
+    end
   end
+
+  def admin_enough?
+    User.where("role == 'admin'").size > 1 || User.find_by("role == 'admin'") != self
+  end
+
 end

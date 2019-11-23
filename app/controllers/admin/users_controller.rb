@@ -9,29 +9,22 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-    if @user.admin_enough?
-      if @user.update(user_params)
-        flash[:notice] = "user was successfully updated"
-        redirect_to admin_users_path()
-      else
-        flash.now[:alert] = "user was failed to update"
-        render :edit
-      end
+    if @user.update(user_params)
+      flash[:notice] = "user was successfully updated"
+      redirect_to admin_users_path()
     else
-      flash.now[:alert] = "admin not enough"
+      flash.now[:alert] = "user was failed to update"
       render :edit
     end
   end
 
   def destroy
-    if @user.admin_enough?
-      @user.destroy
-      redirect_to admin_users_path
+    if @user.destroy
       flash[:alert] = "user was deleted"
     else
-      redirect_to admin_users_path
-      flash[:alert] = "admin not enough"
+      flash[:alert] = @user.errors[:base]
     end
+    redirect_to admin_users_path
   end
 
   private
