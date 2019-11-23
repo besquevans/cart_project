@@ -15,10 +15,10 @@
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Sold</th>
+            <th><%= link_to "ID", admin_products_path(order: "id") %></th>
+            <th><%= link_to "Name", admin_products_path(order: "name") %></th>
+            <th><%= link_to "Price", admin_products_path(order: "price") %></th>
+            <th><%= link_to "Sold", admin_products_path(order: "sold_count") %></th>
             <th>#</th>
           </tr>
         </thead>

@@ -1,8 +1,21 @@
 class Admin::ProductsController < Admin::BaseController
   before_action :set_product, only: [:edit, :update, :destroy]
   
+  @@reverse = false
   def index
-    @products = Product.page(params[:page]).per(10)
+    if params[:order]
+      if @@reverse == true
+        @t = Product.order("#{params[:order]}" + " DESC")
+        @@reverse = false
+      else
+        @t = Product.order(params[:order])
+        @@reverse = true
+      end
+      @products = @t.page(params[:page]).per(10)
+    else
+      @products = Product.page(params[:page]).per(10)
+    end
+    
   end
 
   def new 
