@@ -14,32 +14,21 @@
       <br>
       <table class="table table-striped table-bordered">
         <thead>
-          <tr>
-            <th><%= link_to "ID", admin_products_path(order: "id") %></th>
-            <th><%= link_to "Name", admin_products_path(order: "name") %></th>
-            <th><%= link_to "Price", admin_products_path(order: "price") %></th>
-            <th><%= link_to "Sold", admin_products_path(order: "sold_count") %></th>
+          <tr class="order-link">
+            <th><%= sort_link(@q, :id, 'Id', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :name, 'Name', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :price, 'Price', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :sold_count, 'Sold', default_order: :asc) %></th>
             <th>#</th>
           </tr>
         </thead>
-        <tbody>
-          <% @products.each do |product| %>
-          <tr>
-            <th scope="row"><%= product.id %></th>
-            <td><%= product.name %></td>
-            <td><%= product.price %></td>
-            <td><%= product.sold_count %></td>
-            <td>
-              <%= link_to 'Edit', edit_admin_product_path(product) %>
-              <%= link_to 'Delete', admin_product_path(product), method: :delete, data: { confirm: "Are you sure?"} %>
-            </td>
-          </tr>
-          <% end %>
+        <tbody id="products">
+          <%= render partial: "products", collection: @products, as: :product %>
         </tbody>
       </table>
-       <div class="text-center">
+      <div class="text-center">
         <%= paginate @products %>
       </div>
-     </div>
-   </div>
+    </div>
+  </div>
 </div>

@@ -1,21 +1,10 @@
 class Admin::ProductsController < Admin::BaseController
   before_action :set_product, only: [:edit, :update, :destroy]
   
-  @@reverse = false
+  $reverse = false
   def index
-    if params[:order]
-      if @@reverse == true
-        @t = Product.order("#{params[:order]}" + " DESC")
-        @@reverse = false
-      else
-        @t = Product.order(params[:order])
-        @@reverse = true
-      end
-      @products = @t.page(params[:page]).per(10)
-    else
-      @products = Product.page(params[:page]).per(10)
-    end
-    
+    @q = Product.ransack(params[:q])
+    @products = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   def new 
