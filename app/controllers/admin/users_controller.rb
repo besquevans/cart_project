@@ -2,7 +2,8 @@ class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: [:edit, :update, :destroy]
   
   def index
-    @users = User.order("role DESC").page(params[:page]).per(10)
+    @q = User.order("role DESC").order("id DESC").ransack(params[:q])
+    @users = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   def edit

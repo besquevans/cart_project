@@ -2,7 +2,7 @@ class Admin::ProductsController < Admin::BaseController
   before_action :set_product, only: [:edit, :update, :destroy]
   
   def index
-    @q = Product.ransack(params[:q])
+    @q = Product.order("id DESC").ransack(params[:q])
     @products = @q.result(distinct: true).page(params[:page]).per(10)
   end
 

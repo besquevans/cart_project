@@ -1,7 +1,8 @@
 class Admin::OrdersController < Admin::BaseController
 
   def index
-    @orders = Order.includes(:user).order(id: :desc).page(params[:page]).per(10)
+    @q = Order.includes(:user).order("id DESC").ransack(params[:q])
+    @orders = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   def edit

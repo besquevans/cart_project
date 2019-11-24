@@ -17,12 +17,12 @@
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Order Number</th>
-            <th>Customer</th>
-            <th>Amount</th>
-            <th>Payment status</th>
-            <th>Shipping status</th>
+            <th><%= sort_link(@q, :id, 'Id', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :sn, 'Order Number', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :user_email, 'Customer', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :amount, 'Amount', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :payment_status, 'Payment status', default_order: :asc) %></th>
+            <th><%= sort_link(@q, :shipping_status, 'Shipping status', default_order: :asc) %></th>
             <th>Order Detail</th>
           </tr>
         </thead>
