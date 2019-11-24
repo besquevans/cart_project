@@ -57,7 +57,8 @@ gem 'rack-attack'
 gem 'dalli'
 
 gem 'rails-i18n'
-
+#search & sort
+gem 'ransack' 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
