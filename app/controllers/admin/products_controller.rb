@@ -1,7 +1,6 @@
 class Admin::ProductsController < Admin::BaseController
   before_action :set_product, only: [:edit, :update, :destroy]
   
-  $reverse = false
   def index
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).page(params[:page]).per(10)
