@@ -47,9 +47,12 @@ class User < ApplicationRecord
   end
   
   def self.from_omniauth(auth_hash)
-    # Facebook 回傳的資訊，會再以 Hash 的形式傳入此方法做後續處理
-    # 由於 Facebook 回傳資訊未必能和你的資料庫相容，要在這個方法裡制定標準
-    # 透過你制定的標準，把 Hash 整理成能和 User model 相容的資料
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name   # assuming the user model has a name
+      user.avatar = auth.info.image # assuming the user model has an image
+    end
   end
 
   def ckeck_admin_enough
