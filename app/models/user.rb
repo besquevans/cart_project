@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :orders
 
   before_create :generate_authentication_token
-  before_destroy :ckeck_admin_enough
+  #before_destroy :ckeck_admin_enough
   before_update :ckeck_admin_enough
 
   def generate_authentication_token
