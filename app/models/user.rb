@@ -60,7 +60,7 @@ class User < ApplicationRecord
   end
 
   def admin_enough?
-    User.where("role == 'admin'").size > 1 || User.find_by("role == 'admin'") != self
+    User.where("role == ?", 'admin').size > 1 || User.find_by_role("admin") != self
   end
 
 end
