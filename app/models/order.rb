@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   validates_numericality_of :amount, greater_than: 0
   validates :phone, length: { in: 8..14 }
   validates :payment_status, inclusion: { in: %w(not_paid paid), message: "%{value} is not a valid PAYMENT_STATUS" }
-  validates :shipping_status, inclusion: { in: %w(not_shipped shipped), message: "%{value} is not a valid SHIPPING_STATUS" }
+  validates :shipping_status, inclusion: { in: %w(not_shipped shipped cancelled), message: "%{value} is not a valid SHIPPING_STATUS" }
 
   # set constant to generate select options
   PAYMENT_STATUS = [

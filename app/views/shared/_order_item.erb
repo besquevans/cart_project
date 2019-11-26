@@ -47,7 +47,7 @@
                 <% end %>
 
                 <% if not_shipped?(order) %>
-                    <%= link_to "Cancer Order", order_path(order), method: :patch, class: "btn btn-default" %>
+                    <%= link_to "Cancer Order", order_path(order), method: :patch, class: "btn btn-default", data: { confirm: "Are you sure?"} %>
                 <% end %>
             </div>
         </div>
