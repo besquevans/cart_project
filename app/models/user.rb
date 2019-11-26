@@ -46,7 +46,7 @@ class User < ApplicationRecord
     # 使用權杖向 Facebook 發送 Request，請求回傳使用者的臉書資料
   end
   
-  def self.from_omniauth(auth_hash)
+  def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
