@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
 
-  has_many :orders
+  has_many :orders, dependent: :destroy
 
   before_create :generate_authentication_token
   #before_destroy :ckeck_admin_enough
