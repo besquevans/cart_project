@@ -79,10 +79,13 @@
           <%= f.text_area :address, class: "form-control" %>
         </div>
         
-         
-        <%= f.submit "CHECKOUT", class: "btn btn-default" %>
-        
+        <% if current_user %>
+          <%= f.submit "CHECKOUT", class: "btn btn-default" %>
+        <% else %>
+          <%= f.submit "Log in", class: "btn btn-default" %>
+        <% end %>
       <% end %>
+      <br>
     </div>
   </div>
 </div>

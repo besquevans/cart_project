@@ -19,7 +19,8 @@ class Order < ApplicationRecord
 
   SHIPPING_STATUS = [
     ["Not Shipped", :not_shipped],
-    ["Shipped",:shipped]
+    ["Shipped",:shipped],
+    ["Cancelled",:cancelled]
   ]
   
   def add_order_items(cart)
