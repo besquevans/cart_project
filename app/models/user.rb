@@ -37,10 +37,6 @@ class User < ApplicationRecord
     User.all.size
   end
 
-  def get_order_count
-    orders.all.size
-  end
-
   def self.get_facebook_user_data(access_token)
     # 需要傳入你的臉書登入權杖
     # 使用權杖向 Facebook 發送 Request，請求回傳使用者的臉書資料

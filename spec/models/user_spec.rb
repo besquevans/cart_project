@@ -5,21 +5,6 @@ RSpec.describe User, type: :model do
     it { should have_many(:orders) }
   end
 
-  describe 'add_cart_item' do
-    it "should add_cart_item" do 
-      user = create(:user)
-      product = create(:product)
-      cart = create(:cart)
-      cart.add_cart_item(product)
-      expect(user.get_order_count).to eq(0)
-      order = create(:order)
-      order.add_order_items(cart)
-      order.amount = cart.subtotal
-      user.orders << order
-      expect(user.get_order_count).to eq(1)
-    end
-  end
-
   describe 'authentication_token' do
     it "create user should get authentication_token" do
       user = create(:user)
@@ -45,14 +30,6 @@ RSpec.describe User, type: :model do
         create(:user)
       end
       expect(User.get_user_count).to eq(10)
-    end
-
-    it 'should get_order_count' do
-      user = create(:user)
-      10.times do 
-        create(:order, user: user)
-      end
-      expect(user.get_order_count).to eq(10)
     end
   end
 end
