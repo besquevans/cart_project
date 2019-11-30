@@ -34,12 +34,6 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-  def destroy
-    @product.destroy
-    redirect_to admin_products_path
-    flash[:alert] = "product was deleted"
-  end
-
   private
 
   def product_params
