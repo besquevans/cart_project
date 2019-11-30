@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::BaseController
-  before_action :set_product, only: [:edit, :update, :destroy]
+  before_action :set_product, only: [:edit, :update]
   
   def index
     @q = Product.order("id DESC").ransack(params[:q])
@@ -37,7 +37,7 @@ class Admin::ProductsController < Admin::BaseController
   private
 
   def product_params
-    params.require(:product).permit(:name, :image, :description, :price)
+    params.require(:product).permit(:name, :image, :description, :price, :on_sold)
   end
 
   def set_product
