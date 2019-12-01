@@ -1,9 +1,16 @@
 <tr>
   <th scope="row"><%= product.id %></th>
-  <td><%= product.name %></td>
+  <td>
+  <% if product.on_sold == false %>
+    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+  <% end %>
+  <%= product.name %>
+  </td>
   <td><%= product.price %></td>
   <td><%= product.sold_count %></td>
   <td>
-    <%= link_to 'Edit', edit_admin_product_path(product) %>
+    <%= link_to edit_admin_product_path(product) do %>
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+    <% end %>
   </td>
 </tr>

@@ -28,8 +28,13 @@
             </td>
             <td><%= user.email %></td>
             <td>
-              <%= link_to 'Edit', edit_admin_user_path(user) %>
-              <%= link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: "Are you sure?"} %>
+              <%= link_to edit_admin_user_path(user) do %>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <% end %>
+              
+              <%= link_to admin_user_path(user), method: :delete, data: { confirm: "Are you sure?"} do %>
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              <% end %>
             </td>
           </tr>
           <% end %>

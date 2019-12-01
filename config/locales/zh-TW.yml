@@ -15,7 +15,7 @@
   delete: 刪除
 
   #商品
-  add_to_cart: 放入購物車
+  
   #分頁
   page:
     first: "<<"

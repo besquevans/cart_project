@@ -36,7 +36,9 @@
             <td><%= order.payment_status %></td>
             <td><%= order.shipping_status %></td>
             <td>
-              <%= link_to 'Edit', edit_admin_order_path(order) %>
+              <%= link_to edit_admin_order_path(order) do %>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <% end %>
             </td>
           </tr>
           <% end %>
