@@ -1,0 +1,21 @@
+
+<div class="hidden-xs">
+  <div class="col-sm-12 col-md-4 col-lg-3">
+    <div class="product-box product_<%= product.id %>">
+      <%= link_to product_path(product) do %>
+        <%= show_product_picture product %>
+      <% end %>
+
+      <div class="caption">
+        <h4><%= link_to product.name, product_path(product) %></h4>
+        <p><%= truncate(product.description, length: 17) %></p>
+        <p>$ <%= product.price %><p>
+          <div class="add-to-cart">
+            <%= button_to add_to_cart_product_path(product), remote: true, class: "btn btn-default" do %>
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

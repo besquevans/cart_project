@@ -11,7 +11,9 @@
       <span class="cart-<%= item.product.id %>-qty"><%= item.quantity %></span>  
       <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post, remote: true %>
       <!----ink_to 不可以省略method: :post ，button_to可以----->  
-      <%= button_to t(:delete), remove_from_cart_product_path(item.product), remote: true, class: "btn btn-default" %>
+      <%= button_to remove_from_cart_product_path(item.product), remote: true, class: "btn btn-default" do %>
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      <% end %>
     </div>
   </div>
 </div>

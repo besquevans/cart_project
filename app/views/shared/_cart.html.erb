@@ -12,7 +12,9 @@
   
     <div class="button" id="cart-button">   
       <% if cart_has_things? %>
-        <%= link_to t(:my_cart), cart_path(current_cart), class: "btn btn-default"%>
+        <%= link_to cart_path(current_cart), class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        <% end %>
       <% end %>
     </div>
     <div class="button">
