@@ -1,0 +1,11 @@
+<% if cart_has_things? %>
+  <%= link_to cart_path(current_cart), class: "btn btn-default" do %>
+    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+  <% end %>
+<% end %>
+
+<% if !!current_user %>
+  <%= link_to orders_path(current_user.orders), class: "btn btn-default" do %>
+    <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
+  <% end %>
+<% end %>
