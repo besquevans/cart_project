@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   def index
     @search = Product.where(on_sold: true)
     if params[:name] 
-      @search = @search.where("name LIKE ?", params[:name])
+      @search = @search.where("name LIKE ?", "%#{params[:name]}%")
     end
     @products = @search.page(params[:page]).per(12)
     @items = current_cart.cart_items
