@@ -14,7 +14,7 @@ class Cart < ApplicationRecord
   end
 
   def subtotal
-    cart_items.map{ |x| x.item_total }.sum
+    cart_items.reload.map{ |x| x.item_total }.sum
   end
 
   def find_item_by(product)

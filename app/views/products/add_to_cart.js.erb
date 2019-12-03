@@ -2,9 +2,9 @@
 <% cart = current_cart %>
 <% if item_only_one?(item) %>
   $('.item-list').append('<%= j render partial: "shared/item", locals: { item: item } %>');
-  $('#cart-button').empty().append('<%= link_to t(:my_cart), cart_path(current_cart), class: "btn btn-default" %>');
+  $('#cart-button').empty().append('<%= j render partial: "shared/cart_button" %>');
 <% else %>
   $('.cart-<%= @product.id %>-qty').text("<%= item.quantity %>");
 <% end %>
 
-$('.amount').text('<%= current_cart.subtotal %>');
+$('.amount').text('$ <%= current_cart.subtotal %>');

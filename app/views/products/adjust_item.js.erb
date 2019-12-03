@@ -6,7 +6,7 @@
   $('.cart-<%= item.product.id %>-qty').text("<%= item.quantity %>");
 <% end %>
 
-$('.amount').text('<%= current_cart.subtotal %>');
+$('.amount').text('＄<%= current_cart.subtotal %>');
 
 <% if nothing_in_cart? %>
   $('#cart-button').empty();

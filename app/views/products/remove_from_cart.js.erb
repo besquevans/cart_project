@@ -4,5 +4,5 @@ $('.product-<%= @product.id %>').remove();
 $('.amount').text('<%= current_cart.subtotal %>');
 
 <% if nothing_in_cart? %>
-  $('#cart-button').empty();
+  $('#cart-button .btn').first().hide();
 <% end %>
