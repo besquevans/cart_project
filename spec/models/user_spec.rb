@@ -24,6 +24,26 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'admin enough?' do
+    it 'when 1 user' do
+      user = create(:user)
+      expect(user.admin_enough?).to eq(true)
+    end
+
+    it 'when 1 user 1 admin' do
+      user = create(:user)
+      admin = create(:user, :role => "admin")
+      expect(user.admin_enough?).to eq(true)
+      expect(admin.admin_enough?).to eq(false)
+    end
+
+    it 'when 2 admin' do
+      create(:user, :role => "admin")
+      admin = create(:user, :role => "admin")
+      expect(admin.admin_enough?).to eq(true)
+    end
+  end
+
   describe 'count' do
     it 'should get_user_count' do
       10.times do 

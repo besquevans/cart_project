@@ -54,7 +54,7 @@ class User < ApplicationRecord
   def ckeck_admin_enough
     unless admin_enough?
       errors[:base] << "admin not enough!!!"
-      throw :abort
+      throw :abort      #中斷回呼
     end
   end
 
