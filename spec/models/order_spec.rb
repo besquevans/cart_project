@@ -7,12 +7,6 @@ RSpec.describe Order, type: :model do
     it { should have_many(:products) }
     it { should have_many(:payments) }
   end
-
-  describe "vaildation" do #必填選項
-    it { should validate_presence_of(:name) }   
-    it { should validate_presence_of(:address) }
-    it { should validate_presence_of(:phone) }
-  end
   
   describe "add product to order" do
     it "when add 1 item to order" do
