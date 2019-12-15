@@ -15,13 +15,24 @@ RSpec.describe Order, type: :model do
   end
   
   describe "add product to order" do
-    it "when add items to order" do
+    it "when add 1 item to order" do
       product = create(:product)
       cart = create(:cart)
       cart.add_cart_item(product)
       order = Order.new
       order.add_order_items(cart)
       expect(order.order_items.size).to eq(1)
+    end
+
+    it "when add 2 item to order" do
+      product1 = create(:product)
+      product2 = create(:product)
+      cart = create(:cart)
+      cart.add_cart_item(product1)
+      cart.add_cart_item(product2)
+      order = Order.new
+      order.add_order_items(cart)
+      expect(order.order_items.size).to eq(2)
     end
   end
 
@@ -90,6 +101,31 @@ RSpec.describe Order, type: :model do
 
       expect(Product.find(product1.id).sold_count).to eq(2)
       expect(Product.find(product2.id).sold_count).to eq(3)
+    end
+  end
+
+  describe "item_total" do
+    it "when 1 product*1 in order" do
+      product = create(:product, price: 10)
+      cart = create(:cart)
+      cart.add_cart_item(product)
+      order = Order.new
+
+      order.add_order_items(cart)
+      order_item = order.order_items.first
+      expect(order_item.item_total).to eq(10)
+    end
+
+    it "when 1 product*2 in order" do
+      product = create(:product, price: 10)
+      cart = create(:cart)
+      cart.add_cart_item(product)
+      cart.add_cart_item(product)
+      order = Order.new
+
+      order.add_order_items(cart)
+      order_item = order.order_items.first
+      expect(order_item.item_total).to eq(20)
     end
   end
 end
