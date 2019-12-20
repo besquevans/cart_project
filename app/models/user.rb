@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_many :orders, dependent: :destroy
 
+  scope :admin, -> { where("role = ?", 'admin') }
+
   before_create :generate_authentication_token
   #before_destroy :ckeck_admin_enough
   before_update :ckeck_admin_enough
@@ -59,7 +61,7 @@ class User < ApplicationRecord
   end
 
   def admin_enough?
-    User.where("role = ?", 'admin').size > 1 || User.find_by_role("admin") != self
+    User.admin.size > 1 || admin? == false
   end
 
 end
