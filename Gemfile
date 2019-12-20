@@ -45,8 +45,9 @@ gem 'ffaker'
 gem 'rest-client'
 #分頁
 gem 'kaminari'
-#facebook login
+#omniauth
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2' 
 #set evn var
 gem 'figaro'
 
