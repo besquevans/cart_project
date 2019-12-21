@@ -60,6 +60,7 @@ gem 'dalli'
 gem 'rails-i18n'
 #search & sort
 gem 'ransack' 
+gem "font-awesome-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

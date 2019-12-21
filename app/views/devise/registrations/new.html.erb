@@ -24,13 +24,17 @@
     <br>
 
     <div class="actions">
-      <%= f.submit "Sign up" %>
+      <%= f.submit "Sign up", class: "btn btn-default" %>
     </div>
-  <br>
   <% end %>
 
   <div class="field">
-    <%= button_to 'FB Login', user_facebook_omniauth_authorize_path, class: "btn btn-primary" %>
+    <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-primary" do %>
+      <i class="fa fa-facebook" style="font-weigth:4vh"></i>
+    <% end %>
+    <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-danger" do %>
+      <i class="fa fa-google" style="font-weigth:4vh"></i>
+    <% end %>
   </div>
 
   <%#= render "devise/shared/links" %>
