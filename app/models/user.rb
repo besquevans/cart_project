@@ -21,47 +21,20 @@ class User < ApplicationRecord
     self.role == "admin"
   end
 
-#facebook傳入的登入資料
-  def self.from_omniauth(auth)
+#facebook or google傳入的登入資料
+  def self.from_omniauth(auth, signed_in_resource = nil)
     data = auth.info
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = data.email
       user.password = Devise.friendly_token[0,20]
-      user.name = data.name   # assuming the user model has a name
-      user.avatar = data.image # assuming the user model has an image
-      # If you are using confirmable and the provider(s) you use validate emails, 
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
-    end
-  end
-
-  #google傳入的登入資料
-  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
-    data = access_token.info
-    where(:google_token => access_token.credentials.token, :google_uid => access_token.uid ).first_or_create do |user| 
-      user.name = data["name"]
-      user.email = data["email"]
-      user.password = Devise.friendly_token[0,20]
+      user.name = data.name   
+      user.avatar = data.image 
     end
   end
 
   #rspec
   def self.get_user_count
     User.all.size
-  end
-
-  def self.get_facebook_user_data(access_token)
-    # 需要傳入你的臉書登入權杖
-    # 使用權杖向 Facebook 發送 Request，請求回傳使用者的臉書資料
-  end
-  
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.name   # assuming the user model has a name
-      user.avatar = auth.info.image # assuming the user model has an image
-    end
   end
 
   def ckeck_admin_enough
