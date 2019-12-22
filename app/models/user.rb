@@ -23,12 +23,21 @@ class User < ApplicationRecord
 
 #facebook or google傳入的登入資料
   def self.from_omniauth(auth, signed_in_resource = nil)
-    data = auth.info
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = data.email
-      user.password = Devise.friendly_token[0,20]
-      user.name = data.name   
-      user.avatar = data.image 
+    user = User.where(provider: auth.provider, uid: auth.uid).first
+    if user 
+      return user
+    else
+      existing_user = User.where(email: auth.info["email"]).first
+      if existing_user
+        return existing_user
+      else
+        user = User.create(
+          email: auth.info.email,
+          password: Devise.friendly_token[0,20],
+          name: auth.info.name,
+          avatar: auth.info.image 
+        )
+      end
     end
   end
 
