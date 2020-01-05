@@ -6,7 +6,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def edit
-    @order = Order.find(params[:id])
+    @order = Order.includes(:order_items, order_items: :product).find(params[:id])
     @order_items = @order.order_items
   end
 
